@@ -305,12 +305,12 @@
           <!-- TAB 1: Background Tools -->
           <div id="tab-panel-bg" class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-5">
             <div>
-              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2.5 font-deltha">Background Blur</label>
+              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2.5 font-deltha">Background Blur (Original Scene)</label>
               <div class="grid grid-cols-4 gap-2">
-                <button onclick="applyBlur(0)" class="bg-slate-50 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700">None</button>
-                <button onclick="applyBlur(6)" class="bg-slate-50 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700">Soft</button>
-                <button onclick="applyBlur(14)" class="bg-slate-50 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700">Medium</button>
-                <button onclick="applyBlur(28)" class="bg-slate-50 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700">Heavy</button>
+                <button onclick="applyBlur(0)" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">None</button>
+                <button onclick="applyBlur(6)" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">Soft</button>
+                <button onclick="applyBlur(14)" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">Medium</button>
+                <button onclick="applyBlur(28)" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">Heavy</button>
               </div>
             </div>
 
@@ -376,18 +376,21 @@
 
           <!-- TAB 3: Studio AI Effects -->
           <div id="tab-panel-fx" class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-5 hidden max-h-[580px] overflow-y-auto custom-scroll">
+            
+            <!-- 1-Click Filter Presets -->
             <div>
               <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2 font-deltha">Color Presets</label>
               <div class="grid grid-cols-3 gap-2">
-                <button onclick="applyFxPreset('normal')" class="bg-purple-50 text-purple-700 border border-purple-200 py-1.5 rounded-xl text-[11px] font-bold">Normal</button>
-                <button onclick="applyFxPreset('studio')" class="bg-slate-50 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700">Studio</button>
-                <button onclick="applyFxPreset('vibrant')" class="bg-slate-50 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700">Vibrant</button>
-                <button onclick="applyFxPreset('warm')" class="bg-slate-50 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700">Warm</button>
-                <button onclick="applyFxPreset('bw')" class="bg-slate-50 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700">B&amp;W</button>
-                <button onclick="resetAllEffects()" class="bg-slate-50 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-500">Reset</button>
+                <button onclick="applyFxPreset('normal')" class="bg-purple-50 text-purple-700 border border-purple-200 py-1.5 rounded-xl text-[11px] font-bold transition">Normal</button>
+                <button onclick="applyFxPreset('studio')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">Studio</button>
+                <button onclick="applyFxPreset('vibrant')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">Vibrant</button>
+                <button onclick="applyFxPreset('warm')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">Warm</button>
+                <button onclick="applyFxPreset('bw')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">B&amp;W</button>
+                <button onclick="resetAllEffects()" class="bg-slate-50 hover:bg-rose-50 hover:text-rose-600 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-500 transition">Reset</button>
               </div>
             </div>
 
+            <!-- Subject Adjustments -->
             <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3.5">
               <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block font-deltha">Subject Color &amp; Lighting</label>
               <div>
@@ -411,10 +414,87 @@
                 </div>
                 <input type="range" id="fx-sat" min="0" max="200" value="100" oninput="updateFxSetting('saturation', this.value)" class="w-full cursor-pointer" />
               </div>
+              <div>
+                <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                  <span>Warmth / Tint</span>
+                  <span id="fx-warmth-val" class="text-purple-600 font-bold">0%</span>
+                </div>
+                <input type="range" id="fx-warmth" min="0" max="60" value="0" oninput="updateFxSetting('warmth', this.value)" class="w-full cursor-pointer" />
+              </div>
             </div>
 
-            <button onclick="resetAllEffects()" class="w-full bg-slate-100 hover:bg-slate-200 border border-slate-300 py-2.5 rounded-xl text-xs font-bold text-slate-700 transition">
-              Reset All Effects
+            <!-- Studio Drop Shadow Controls -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i>
+                  <span class="text-xs font-bold text-slate-800 font-deltha uppercase tracking-wider">Drop Shadow</span>
+                </div>
+                <input type="checkbox" id="shadow-toggle" onchange="updateFxToggle('shadowEnabled', this.checked)" class="rounded text-purple-600 focus:ring-0 cursor-pointer w-4 h-4" />
+              </div>
+
+              <div id="shadow-controls-group" class="space-y-3 opacity-40 pointer-events-none transition-all duration-200 pt-1">
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Shadow Blur</span>
+                    <span id="fx-shadow-blur-val" class="text-purple-600 font-bold">20px</span>
+                  </div>
+                  <input type="range" id="fx-shadow-blur" min="0" max="60" value="20" oninput="updateFxSetting('shadowBlur', this.value)" class="w-full cursor-pointer" />
+                </div>
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Distance (Y-Offset)</span>
+                    <span id="fx-shadow-offset-val" class="text-purple-600 font-bold">15px</span>
+                  </div>
+                  <input type="range" id="fx-shadow-offset" min="0" max="50" value="15" oninput="updateFxSetting('shadowOffset', this.value)" class="w-full cursor-pointer" />
+                </div>
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Opacity</span>
+                    <span id="fx-shadow-opacity-val" class="text-purple-600 font-bold">35%</span>
+                  </div>
+                  <input type="range" id="fx-shadow-opacity" min="10" max="100" value="35" oninput="updateFxSetting('shadowOpacity', this.value)" class="w-full cursor-pointer" />
+                </div>
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-[11px] font-semibold text-slate-600">Shadow Color</span>
+                  <input type="color" id="fx-shadow-color" value="#000000" onchange="updateFxSetting('shadowColor', this.value)" class="w-7 h-7 rounded-full cursor-pointer border-0 bg-transparent" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Creator Sticker Outline -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="sparkle" class="w-4 h-4 text-purple-600"></i>
+                  <span class="text-xs font-bold text-slate-800 font-deltha uppercase tracking-wider">Sticker Outline</span>
+                </div>
+                <input type="checkbox" id="outline-toggle" onchange="updateFxToggle('outlineEnabled', this.checked)" class="rounded text-purple-600 focus:ring-0 cursor-pointer w-4 h-4" />
+              </div>
+
+              <div id="outline-controls-group" class="space-y-3 opacity-40 pointer-events-none transition-all duration-200 pt-1">
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Border Thickness</span>
+                    <span id="fx-outline-size-val" class="text-purple-600 font-bold">6px</span>
+                  </div>
+                  <input type="range" id="fx-outline-size" min="1" max="25" value="6" oninput="updateFxSetting('outlineSize', this.value)" class="w-full cursor-pointer" />
+                </div>
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-[11px] font-semibold text-slate-600">Outline Color</span>
+                  <div class="flex items-center gap-2">
+                    <button type="button" onclick="setOutlinePresetColor('#ffffff')" class="w-5 h-5 rounded-full bg-white border border-slate-300 shadow-sm" title="White"></button>
+                    <button type="button" onclick="setOutlinePresetColor('#facc15')" class="w-5 h-5 rounded-full bg-yellow-400" title="Yellow"></button>
+                    <button type="button" onclick="setOutlinePresetColor('#a855f7')" class="w-5 h-5 rounded-full bg-purple-500" title="Purple"></button>
+                    <input type="color" id="fx-outline-color" value="#ffffff" onchange="updateFxSetting('outlineColor', this.value)" class="w-7 h-7 rounded-full cursor-pointer border-0 bg-transparent" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reset Button -->
+            <button onclick="resetAllEffects()" class="w-full bg-slate-100 hover:bg-slate-200 border border-slate-300 py-2.5 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center gap-2 transition">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset All Effects
             </button>
           </div>
         </div>
@@ -440,7 +520,7 @@
     </div>
   </footer>
 
-  <!-- iLoveAPI Integrated Script -->
+  <!-- iLoveAPI & Studio Pipeline Script -->
   <script>
     let originalImageElement = new Image();
     let originalImageData = null;
@@ -653,6 +733,7 @@
 
       mainCtx.clearRect(0, 0, w, h);
 
+      // Floor Drop Shadow
       if (fxSettings.shadowEnabled) {
         mainCtx.save();
         mainCtx.shadowColor = hexToRgba(fxSettings.shadowColor, fxSettings.shadowOpacity / 100);
@@ -663,6 +744,12 @@
         mainCtx.restore();
       }
 
+      // Creator Sticker Outline
+      if (fxSettings.outlineEnabled && fxSettings.outlineSize > 0) {
+        drawStickerOutline(mainCtx, fgBufferCanvas, w, h, fxSettings.outlineSize, fxSettings.outlineColor);
+      }
+
+      // Subject Lighting & Color Filter
       mainCtx.save();
       const filterStr = `brightness(${fxSettings.brightness}%) contrast(${fxSettings.contrast}%) saturate(${fxSettings.saturation}%) sepia(${fxSettings.warmth}%)`;
       mainCtx.filter = filterStr;
@@ -671,7 +758,109 @@
       mainCtx.restore();
     }
 
-    // Brush Retouch Setup
+    // High performance smooth outline generator
+    function drawStickerOutline(ctx, srcCanvas, w, h, size, color) {
+      const off = document.createElement('canvas');
+      off.width = w;
+      off.height = h;
+      const oCtx = off.getContext('2d');
+      oCtx.drawImage(srcCanvas, 0, 0);
+      oCtx.globalCompositeOperation = 'source-in';
+      oCtx.fillStyle = color;
+      oCtx.fillRect(0, 0, w, h);
+
+      ctx.save();
+      const radius = size;
+      const steps = Math.min(32, Math.max(16, radius * 2));
+      for (let i = 0; i < steps; i++) {
+        const angle = (i * 2 * Math.PI) / steps;
+        ctx.drawImage(off, Math.cos(angle) * radius, Math.sin(angle) * radius);
+      }
+      if (radius > 4) {
+        for (let i = 0; i < steps; i++) {
+          const angle = (i * 2 * Math.PI) / steps;
+          ctx.drawImage(off, Math.cos(angle) * (radius / 2), Math.sin(angle) * (radius / 2));
+        }
+      }
+      ctx.restore();
+    }
+
+    // Effects Controllers
+    window.updateFxSetting = function(prop, val) {
+      fxSettings[prop] = (prop === 'shadowColor' || prop === 'outlineColor') ? val : Number(val);
+      const textVal = document.getElementById(`fx-${prop.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}-val`);
+      if (textVal) {
+        textVal.innerText = (prop === 'shadowBlur' || prop === 'shadowOffset' || prop === 'outlineSize') ? `${val}px` : `${val}%`;
+      }
+      renderComposedView();
+    };
+
+    window.updateFxToggle = function(prop, enabled) {
+      fxSettings[prop] = enabled;
+      if (prop === 'shadowEnabled') {
+        const group = document.getElementById('shadow-controls-group');
+        group.classList.toggle('opacity-40', !enabled);
+        group.classList.toggle('pointer-events-none', !enabled);
+      } else if (prop === 'outlineEnabled') {
+        const group = document.getElementById('outline-controls-group');
+        group.classList.toggle('opacity-40', !enabled);
+        group.classList.toggle('pointer-events-none', !enabled);
+      }
+      renderComposedView();
+    };
+
+    window.setOutlinePresetColor = function(color) {
+      document.getElementById('fx-outline-color').value = color;
+      updateFxSetting('outlineColor', color);
+    };
+
+    window.applyFxPreset = function(preset) {
+      if (preset === 'normal') {
+        setFxSliders(100, 100, 100, 0);
+      } else if (preset === 'studio') {
+        setFxSliders(106, 110, 105, 0);
+      } else if (preset === 'vibrant') {
+        setFxSliders(103, 115, 135, 0);
+      } else if (preset === 'warm') {
+        setFxSliders(104, 105, 115, 25);
+      } else if (preset === 'bw') {
+        setFxSliders(100, 125, 0, 0);
+      }
+    };
+
+    function setFxSliders(b, c, s, w) {
+      fxSettings.brightness = b;
+      fxSettings.contrast = c;
+      fxSettings.saturation = s;
+      fxSettings.warmth = w;
+
+      document.getElementById('fx-bright').value = b;
+      document.getElementById('fx-bright-val').innerText = `${b}%`;
+      document.getElementById('fx-contrast').value = c;
+      document.getElementById('fx-contrast-val').innerText = `${c}%`;
+      document.getElementById('fx-sat').value = s;
+      document.getElementById('fx-sat-val').innerText = `${s}%`;
+      document.getElementById('fx-warmth').value = w;
+      document.getElementById('fx-warmth-val').innerText = `${w}%`;
+
+      renderComposedView();
+    }
+
+    window.resetAllEffects = function() {
+      setFxSliders(100, 100, 100, 0);
+      
+      fxSettings.shadowEnabled = false;
+      document.getElementById('shadow-toggle').checked = false;
+      document.getElementById('shadow-controls-group').classList.add('opacity-40', 'pointer-events-none');
+
+      fxSettings.outlineEnabled = false;
+      document.getElementById('outline-toggle').checked = false;
+      document.getElementById('outline-controls-group').classList.add('opacity-40', 'pointer-events-none');
+
+      renderComposedView();
+    };
+
+    // Brush Retouch Handlers
     mainCanvas.addEventListener('mousedown', (e) => {
       if (currentTab !== 'brush') return;
       isPainting = true;
@@ -744,8 +933,16 @@
 
     window.setBrushMode = function (mode) {
       brushMode = mode;
-      document.getElementById('btn-tool-erase').className = mode === 'erase' ? "bg-purple-50 text-purple-700 border border-purple-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2" : "bg-slate-50 text-slate-600 border border-slate-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
-      document.getElementById('btn-tool-restore').className = mode === 'restore' ? "bg-purple-50 text-purple-700 border border-purple-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2" : "bg-slate-50 text-slate-600 border border-slate-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+      const btnErase = document.getElementById('btn-tool-erase');
+      const btnRestore = document.getElementById('btn-tool-restore');
+
+      if (mode === 'erase') {
+        btnErase.className = "bg-purple-50 text-purple-700 border border-purple-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+        btnRestore.className = "bg-slate-50 text-slate-600 border border-slate-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+      } else {
+        btnRestore.className = "bg-purple-50 text-purple-700 border border-purple-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+        btnErase.className = "bg-slate-50 text-slate-600 border border-slate-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+      }
     };
 
     window.updateBrushSize = function (val) {
@@ -757,7 +954,12 @@
       currentTab = tab;
       ['bg', 'brush', 'fx'].forEach(t => {
         document.getElementById(`tab-panel-${t}`).classList.toggle('hidden', t !== tab);
-        document.getElementById(`tab-btn-${t}`).className = t === tab ? "flex-1 py-2 text-xs font-bold rounded-xl bg-purple-50 text-purple-700 transition flex items-center justify-center gap-1.5 shadow-sm" : "flex-1 py-2 text-xs font-bold rounded-xl text-slate-500 hover:text-slate-900 transition flex items-center justify-center gap-1.5";
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tab) {
+          btn.className = "flex-1 py-2 text-xs font-bold rounded-xl bg-purple-50 text-purple-700 transition flex items-center justify-center gap-1.5 shadow-sm";
+        } else {
+          btn.className = "flex-1 py-2 text-xs font-bold rounded-xl text-slate-500 hover:text-slate-900 transition flex items-center justify-center gap-1.5";
+        }
       });
       mainCanvas.style.cursor = tab === 'brush' ? 'crosshair' : 'default';
     };
@@ -765,8 +967,13 @@
     window.setCustomBg = function (color) {
       underlayLayer.style.backgroundImage = 'none';
       underlayLayer.style.filter = 'none';
-      underlayLayer.style.backgroundColor = color === 'transparent' ? 'transparent' : color;
-      activeBackground = { type: color === 'transparent' ? 'transparent' : 'color', val: color };
+      if (color === 'transparent') {
+        underlayLayer.style.backgroundColor = 'transparent';
+        activeBackground = { type: 'transparent', val: '' };
+      } else {
+        underlayLayer.style.backgroundColor = color;
+        activeBackground = { type: 'color', val: color };
+      }
     };
 
     window.setBgImage = function (url) {
@@ -774,14 +981,19 @@
       underlayLayer.style.backgroundImage = `url('${url}')`;
       underlayLayer.style.backgroundSize = 'cover';
       underlayLayer.style.backgroundPosition = 'center';
+      underlayLayer.style.filter = 'none';
       activeBackground = { type: 'image', val: url };
     };
 
     window.applyBlur = function (px) {
-      if (px === 0) { setCustomBg('transparent'); return; }
+      if (px === 0) {
+        setCustomBg('transparent');
+        return;
+      }
       underlayLayer.style.backgroundColor = 'transparent';
       underlayLayer.style.backgroundImage = `url('${originalImageElement.src}')`;
       underlayLayer.style.backgroundSize = 'cover';
+      underlayLayer.style.backgroundPosition = 'center';
       underlayLayer.style.filter = `blur(${px}px)`;
       activeBackground = { type: 'blur', val: px, src: originalImageElement.src };
     };
@@ -792,10 +1004,16 @@
     };
 
     window.setViewMode = function (mode) {
+      const btnCutout = document.getElementById('btn-view-cutout');
+      const btnOriginal = document.getElementById('btn-view-original');
       if (mode === 'original') {
         mainCtx.putImageData(originalImageData, 0, 0);
+        btnOriginal.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg bg-white text-purple-700 shadow-sm transition";
+        btnCutout.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition";
       } else {
         renderComposedView();
+        btnCutout.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg bg-white text-purple-700 shadow-sm transition";
+        btnOriginal.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition";
       }
     };
 
@@ -813,7 +1031,9 @@
         const bg = new Image();
         bg.crossOrigin = 'anonymous';
         bg.onload = () => {
-          if (activeBackground.type === 'blur') expCtx.filter = `blur(${activeBackground.val}px)`;
+          if (activeBackground.type === 'blur') {
+            expCtx.filter = `blur(${activeBackground.val}px)`;
+          }
           expCtx.drawImage(bg, 0, 0, expCanvas.width, expCanvas.height);
           expCtx.filter = 'none';
           finalize();
@@ -841,4 +1061,5 @@
     };
   </script>
 </body>
+
 </html>
