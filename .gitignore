@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.log
+out*.png
+out*.jpg
+validate_fix.js
+test_*.js
