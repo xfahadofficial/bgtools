@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta property="og:image" content="https://bgtools.work.gd/og-banner.png">
+  <meta property="twitter:image" content="https://bgtools.work.gd/og-banner.png">
+  
+  <!-- Primary Meta Tags -->
+  <title>Free AI Background Remover & PNG Editor | BG Tools</title>
+  <meta name="title" content="Free AI Background Remover & PNG Editor | BG Tools">
+  <meta name="description" content="Remove image backgrounds instantly with zero edge distortion. Free high-precision AI background remover with manual restore brush, drop shadow, and sticker outline effects.">
+  <meta name="keywords" content="free ai background remover, instant transparent png maker, remove background from photo, drop shadow generator online, sticker outline maker, photo cutout tool">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="author" content="ZenitX Global">
+
+  <!-- Open Graph / Facebook / WhatsApp Preview Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bgtools.work.gd/">
+  <meta property="og:title" content="Free AI Background Remover & PNG Editor | BG Tools">
+  <meta property="og:description" content="Instant high-precision AI background removal. Add drop shadows, sticker outlines, and fine-tune with manual brush tools online for free.">
+  <meta property="og:image" content="https://bgtools.work.gd/og-banner.png">
+
+  <!-- Twitter Card Tags -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://bgtools.work.gd/">
+  <meta property="twitter:title" content="Free AI Background Remover & PNG Editor | BG Tools">
+  <meta property="twitter:description" content="Instant high-precision AI background removal with fine-tuning brush, drop shadow, and sticker outline effects.">
+  <meta property="twitter:image" content="https://bgtools.work.gd/og-banner.png">
+
+  <!-- Structured Data (SoftwareApplication Schema JSON-LD for Google Rich Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BG Tools",
+    "operatingSystem": "All",
+    "applicationCategory": "MultimediaApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "ZenitX Global",
+      "url": "https://xfahadofficial.github.io"
+    },
+    "description": "High-precision AI-powered online background removal tool featuring drop shadow generator, sticker outline maker, and manual erase/restore brushes.",
+    "url": "https://bgtools.work.gd/"
+  }
+  </script>
+
+  <!-- Browser Tab Logo (Favicon) -->
+  <link rel="icon" type="image/png" href="bgtools.png" />
+  <link rel="shortcut icon" type="image/png" href="bgtools.png" />
+  <link rel="apple-touch-icon" href="bgtools.png" />
+
+  <!-- Modern Geometric Display Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @font-face {
+      font-family: 'Deltha';
+      src: local('Deltha'), local('Deltha-Regular'), local('Deltha Regular'),
+        url('deltha.woff2') format('woff2'),
+        url('deltha.woff') format('woff'),
+        url('deltha.ttf') format('truetype'),
+        url('deltha.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .font-deltha {
+      font-family: 'Deltha', 'Syne', 'Space Grotesk', sans-serif;
+      letter-spacing: -0.025em;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .bg-checkerboard {
+      background-color: #ffffff;
+      background-image:
+        linear-gradient(45deg, #f1f5f9 25%, transparent 25%),
+        linear-gradient(-45deg, #f1f5f9 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #f1f5f9 75%),
+        linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    }
+
+    .ambient-purple-1 {
+      position: fixed;
+      top: -100px;
+      right: 5%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+      filter: blur(75px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-purple-2 {
+      position: fixed;
+      bottom: -100px;
+      left: 5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.07) 0%, rgba(255, 255, 255, 0) 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    input[type=range] {
+      accent-color: #7c3aed;
+    }
+
+    /* Custom Scrollbar for sidebar panels */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #e2e8f0;
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #cbd5e1;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-[#fafafa] text-slate-800 min-h-screen flex flex-col selection:bg-purple-500 selection:text-white relative overflow-x-hidden">
+
+  <!-- Ambient Lighting -->
+  <div class="ambient-purple-1"></div>
+  <div class="ambient-purple-2"></div>
+
+  <!-- Header -->
+  <header class="relative z-20 border-b border-slate-200/80 bg-white/85 backdrop-blur-md sticky top-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+
+      <!-- Brand & Agency -->
+      <div class="flex items-center gap-3">
+        <div
+          class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-purple-500/25 overflow-hidden p-1.5 border border-purple-200/50">
+          <img src="bgtools.png" alt="BG Tools Logo" class="w-full h-full object-contain rounded-xl"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="hidden items-center justify-center w-full h-full">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-deltha text-2xl font-bold tracking-tight text-slate-900 uppercase">BG Tools</span>
+            <span
+              class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 border border-purple-200">ZenitX
+              AI Initiative</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium">
+            by <strong class="text-purple-600">ZenitX Global</strong> &bull; AI Powered Digital and Social Media Agency
+          </p>
+        </div>
+      </div>
+
+      <!-- Creator Link -->
+      <div class="flex items-center gap-3">
+        <div
+          class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          ZenitX AI &bull; Full-Body &amp; Fabric Precision
+        </div>
+
+        <a href="https://xfahadofficial.github.io" target="_blank" rel="noopener noreferrer"
+          class="flex items-center gap-2 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 px-4 py-2 rounded-full text-xs font-bold transition shadow-sm hover:scale-105">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          <span>Creator: xfahadofficial</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="relative z-10 flex-grow max-w-7xl mx-auto px-4 sm:px-6 w-full py-10">
+
+    <!-- Upload Hero View -->
+    <div id="upload-screen" class="max-w-3xl mx-auto text-center pt-6 pb-12 transition-all">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs font-semibold mb-6 shadow-sm">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-600"></i>
+        Powered by ZenitX Global &bull; Studio Quality Images
+      </div>
+
+      <h1
+        class="font-deltha text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 mb-4 leading-tight">
+        REMOVE BACKGROUNDS <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-800 bg-clip-text text-transparent">
+          Instantly &amp; Here
+        </span>
+      </h1>
+
+      <p class="text-slate-500 text-sm sm:text-base max-w-xl mx-auto mb-10 leading-relaxed font-medium">
+        Zero cut shoulders, zero distorted uniforms. Instant high-resolution AI background removal.
+      </p>
+
+      <!-- Drop Box -->
+      <div id="drop-zone"
+        class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-600 p-10 sm:p-14 rounded-3xl cursor-pointer group transition-all duration-300 relative shadow-xl shadow-slate-200/50 hover:shadow-purple-500/10">
+        <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20" />
+        <div
+          class="w-20 h-20 rounded-2xl bg-purple-50 border border-purple-100 text-purple-600 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition duration-300 shadow-sm">
+          <i data-lucide="upload-cloud" class="w-9 h-9"></i>
+        </div>
+        <h3 class="font-deltha text-xl font-bold text-slate-900 mb-1">UPLOAD PHOTO OR DRAG &amp; DROP</h3>
+        <p class="text-xs text-slate-400 mb-5">School uniforms, portraits, products, pets (PNG, JPG, WEBP)</p>
+        <button
+          class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl text-xs font-bold inline-flex items-center gap-2 shadow-lg shadow-purple-600/30 transition pointer-events-none uppercase tracking-wider">
+          <i data-lucide="image" class="w-4 h-4"></i> Choose Photo
+        </button>
+      </div>
+
+      <!-- Quick Test Chips -->
+      <div class="mt-8 flex flex-col items-center">
+        <span class="text-xs text-slate-400 mb-3 uppercase tracking-wider font-semibold">Test sample photo:</span>
+        <div class="flex items-center justify-center gap-3 flex-wrap">
+          <button
+            onclick="testWithUrl('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80')"
+            class="bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 text-slate-700 shadow-sm transition">
+            <span class="w-2 h-2 rounded-full bg-purple-500"></span> Portrait
+          </button>
+          <button
+            onclick="testWithUrl('https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80')"
+            class="bg-white hover:bg-slate-50 border border-slate-200 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 text-slate-700 shadow-sm transition">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span> Product
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Processing Loader -->
+    <div id="processing-loader"
+      class="hidden max-w-md mx-auto my-20 bg-white p-8 rounded-3xl text-center border border-slate-200 shadow-xl">
+      <div class="relative w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+        <div class="absolute inset-0 rounded-full border-4 border-purple-100"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-purple-600 border-t-transparent animate-spin"></div>
+        <i data-lucide="sparkles" class="w-6 h-6 text-purple-600"></i>
+      </div>
+      <h3 class="font-deltha text-lg font-bold text-slate-900 mb-1" id="loader-title">Removing Background</h3>
+      <p class="text-xs text-slate-500 mb-4" id="loader-sub">Please wait, removing background...</p>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden border border-slate-200 mb-3">
+        <div id="progress-bar"
+          class="bg-gradient-to-r from-purple-600 to-indigo-600 h-full w-0 transition-all duration-300"></div>
+      </div>
+      <p class="text-[11px] text-slate-400">High precision background removal powered by AI.</p>
+    </div>
+
+    <!-- Workspace Editor -->
+    <div id="editor-workspace" class="hidden space-y-6">
+
+      <!-- Top Action Bar -->
+      <div
+        class="bg-white border border-slate-200/80 px-6 py-3.5 rounded-2xl flex flex-wrap items-center justify-between gap-4 shadow-sm">
+        <button onclick="resetApp()"
+          class="text-xs font-bold text-slate-600 hover:text-purple-600 flex items-center gap-2 transition">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i> Upload New Image
+        </button>
+
+        <div class="flex items-center gap-3">
+          <!-- Toggle View Mode -->
+          <div class="bg-slate-100 p-1 rounded-xl flex items-center border border-slate-200">
+            <button id="btn-view-cutout" onclick="setViewMode('cutout')"
+              class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-white text-purple-700 shadow-sm transition">
+              Removed BG
+            </button>
+            <button id="btn-view-original" onclick="setViewMode('original')"
+              class="px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition">
+              Original
+            </button>
+          </div>
+
+          <!-- Download Action -->
+          <button onclick="exportFinalImage()"
+            class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg shadow-purple-600/30 transition">
+            <i data-lucide="download" class="w-4 h-4"></i> Download Result
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Split Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Canvas Stage (8 Cols) -->
+        <div class="lg:col-span-8 flex flex-col gap-3">
+          <div id="canvas-container"
+            class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-white border border-slate-200/90 flex items-center justify-center bg-checkerboard shadow-lg select-none">
+
+            <!-- Underlay Layer (Background color/blur/image) -->
+            <div id="underlay-layer" class="absolute inset-0 bg-transparent transition-all duration-300"></div>
+
+            <!-- Main Canvas -->
+            <canvas id="main-canvas" class="relative max-w-full max-h-full object-contain z-10"></canvas>
+
+            <!-- Brush Size Indicator Circle -->
+            <div id="brush-cursor"
+              class="pointer-events-none fixed -top-20 -left-20 rounded-full border-2 border-purple-600 bg-purple-500/20 shadow-md z-30 transform -translate-x-1/2 -translate-y-1/2 hidden">
+            </div>
+          </div>
+
+          <div class="text-center text-[11px] text-slate-500 font-medium">
+            Use <span class="text-purple-600 font-semibold">Erase / Restore</span> brush to make manual adjustments or <span class="text-purple-600 font-semibold">Effects</span> to style your subject.
+          </div>
+        </div>
+
+        <!-- Sidebar Tools (4 Cols) -->
+        <div class="lg:col-span-4 flex flex-col gap-4">
+
+          <!-- Tab Headers -->
+          <div
+            class="bg-white p-1 rounded-2xl flex items-center justify-between gap-1 border border-slate-200 shadow-sm">
+            <button onclick="setTab('bg')" id="tab-btn-bg"
+              class="flex-1 py-2 text-xs font-bold rounded-xl bg-purple-50 text-purple-700 transition flex items-center justify-center gap-1.5 shadow-sm">
+              <i data-lucide="image" class="w-3.5 h-3.5"></i> Background
+            </button>
+            <button onclick="setTab('brush')" id="tab-btn-brush"
+              class="flex-1 py-2 text-xs font-bold rounded-xl text-slate-500 hover:text-slate-900 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="brush" class="w-3.5 h-3.5"></i> Erase / Restore
+            </button>
+            <button onclick="setTab('fx')" id="tab-btn-fx"
+              class="flex-1 py-2 text-xs font-bold rounded-xl text-slate-500 hover:text-slate-900 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Effects
+            </button>
+          </div>
+
+          <!-- TAB 1: Background Tools -->
+          <div id="tab-panel-bg" class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-5">
+
+            <!-- Blur Original Background -->
+            <div>
+              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2.5 font-deltha">
+                Background Blur (Original Scene)
+              </label>
+              <div class="grid grid-cols-4 gap-2">
+                <button onclick="applyBlur(0)"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">None</button>
+                <button onclick="applyBlur(6)"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">Soft</button>
+                <button onclick="applyBlur(14)"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">Medium</button>
+                <button onclick="applyBlur(28)"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2 rounded-xl text-[11px] font-semibold text-slate-700 transition">Heavy</button>
+              </div>
+            </div>
+
+            <!-- Solid Colors & Picker -->
+            <div>
+              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2.5 font-deltha">
+                Color Replacement
+              </label>
+              <div class="flex items-center gap-2 flex-wrap">
+                <button onclick="setCustomBg('transparent')"
+                  class="w-8 h-8 rounded-full border-2 border-slate-200 bg-checkerboard shadow-inner"
+                  title="Transparent"></button>
+                <button onclick="setCustomBg('#ffffff')"
+                  class="w-8 h-8 rounded-full border-2 border-slate-200 bg-white shadow-sm"
+                  title="Clean White"></button>
+                <button onclick="setCustomBg('#0f172a')" class="w-8 h-8 rounded-full bg-slate-900"></button>
+                <button onclick="setCustomBg('#7c3aed')" class="w-8 h-8 rounded-full bg-purple-600"></button>
+                <button onclick="setCustomBg('#3b82f6')" class="w-8 h-8 rounded-full bg-blue-500"></button>
+                <button onclick="setCustomBg('#10b981')" class="w-8 h-8 rounded-full bg-emerald-500"></button>
+                <button onclick="setCustomBg('#ef4444')" class="w-8 h-8 rounded-full bg-rose-500"></button>
+                <input type="color" id="bg-color-picker" onchange="setCustomBg(this.value)"
+                  class="w-8 h-8 rounded-full border-0 p-0 cursor-pointer bg-transparent" />
+              </div>
+            </div>
+
+            <!-- Scenic Photo Presets -->
+            <div>
+              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2.5 font-deltha">
+                Studio Environments
+              </label>
+              <div class="grid grid-cols-3 gap-2">
+                <button
+                  onclick="setBgImage('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80')"
+                  class="h-14 rounded-xl bg-cover bg-center border border-slate-200 hover:border-purple-600 transition shadow-sm"
+                  style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=200&q=60')"></button>
+                <button
+                  onclick="setBgImage('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80')"
+                  class="h-14 rounded-xl bg-cover bg-center border border-slate-200 hover:border-purple-600 transition shadow-sm"
+                  style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=200&q=60')"></button>
+                <button
+                  onclick="setBgImage('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')"
+                  class="h-14 rounded-xl bg-cover bg-center border border-slate-200 hover:border-purple-600 transition shadow-sm"
+                  style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=60')"></button>
+              </div>
+            </div>
+
+            <!-- Custom Background Upload -->
+            <div>
+              <label
+                class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 flex items-center justify-center gap-2 p-3 rounded-xl cursor-pointer text-xs font-bold text-slate-700 transition">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-purple-600"></i> Upload Custom Backdrop
+                <input type="file" accept="image/*" class="hidden" onchange="handleUserCustomBg(event)" />
+              </label>
+            </div>
+          </div>
+
+          <!-- TAB 2: Erase & Restore Retouch Tools -->
+          <div id="tab-panel-brush" class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-5 hidden">
+            <div>
+              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-3 font-deltha">Retouch
+                Mode</label>
+              <div class="grid grid-cols-2 gap-2">
+                <button id="btn-tool-erase" onclick="setBrushMode('erase')"
+                  class="bg-purple-50 text-purple-700 border border-purple-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+                  <i data-lucide="eraser" class="w-4 h-4 text-rose-500"></i> Erase
+                </button>
+                <button id="btn-tool-restore" onclick="setBrushMode('restore')"
+                  class="bg-slate-50 text-slate-600 border border-slate-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
+                  <i data-lucide="paint-brush" class="w-4 h-4 text-emerald-600"></i> Restore
+                </button>
+              </div>
+            </div>
+
+            <!-- Brush Size -->
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
+                <span>Brush Size</span>
+                <span id="brush-size-text" class="text-purple-600 font-bold">30px</span>
+              </div>
+              <input type="range" id="brush-size-slider" min="5" max="100" value="30"
+                oninput="updateBrushSize(this.value)" class="w-full cursor-pointer" />
+            </div>
+
+            <!-- Reset Retouch -->
+            <div class="pt-2">
+              <button onclick="restoreInitialCutout()"
+                class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2.5 rounded-xl text-xs text-slate-700 font-bold flex items-center justify-center gap-2 transition">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset All Brush Edits
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 3: Studio AI Effects & Controls -->
+          <div id="tab-panel-fx" class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-5 hidden max-h-[580px] overflow-y-auto custom-scroll">
+
+            <!-- 1-Click Filter Presets -->
+            <div>
+              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2 font-deltha">
+                Color Presets
+              </label>
+              <div class="grid grid-cols-3 gap-2">
+                <button onclick="applyFxPreset('normal')"
+                  class="bg-purple-50 text-purple-700 border border-purple-200 py-1.5 rounded-xl text-[11px] font-bold transition">Normal</button>
+                <button onclick="applyFxPreset('studio')"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">Studio</button>
+                <button onclick="applyFxPreset('vibrant')"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">Vibrant</button>
+                <button onclick="applyFxPreset('warm')"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">Warm</button>
+                <button onclick="applyFxPreset('bw')"
+                  class="bg-slate-50 hover:bg-slate-100 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-700 transition">B&amp;W</button>
+                <button onclick="resetAllEffects()"
+                  class="bg-slate-50 hover:bg-rose-50 hover:text-rose-600 border border-slate-200 py-1.5 rounded-xl text-[11px] font-semibold text-slate-500 transition">Reset</button>
+              </div>
+            </div>
+
+            <!-- Subject Adjustments (Sliders) -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3.5">
+              <label class="text-xs font-bold text-slate-800 uppercase tracking-wider block font-deltha">
+                Subject Color &amp; Lighting
+              </label>
+
+              <!-- Brightness -->
+              <div>
+                <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                  <span>Brightness</span>
+                  <span id="fx-bright-val" class="text-purple-600 font-bold">100%</span>
+                </div>
+                <input type="range" id="fx-bright" min="50" max="150" value="100"
+                  oninput="updateFxSetting('brightness', this.value)" class="w-full cursor-pointer" />
+              </div>
+
+              <!-- Contrast -->
+              <div>
+                <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                  <span>Contrast</span>
+                  <span id="fx-contrast-val" class="text-purple-600 font-bold">100%</span>
+                </div>
+                <input type="range" id="fx-contrast" min="50" max="150" value="100"
+                  oninput="updateFxSetting('contrast', this.value)" class="w-full cursor-pointer" />
+              </div>
+
+              <!-- Saturation -->
+              <div>
+                <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                  <span>Saturation</span>
+                  <span id="fx-sat-val" class="text-purple-600 font-bold">100%</span>
+                </div>
+                <input type="range" id="fx-sat" min="0" max="200" value="100"
+                  oninput="updateFxSetting('saturation', this.value)" class="w-full cursor-pointer" />
+              </div>
+
+              <!-- Warmth -->
+              <div>
+                <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                  <span>Warmth / Tint</span>
+                  <span id="fx-warmth-val" class="text-purple-600 font-bold">0%</span>
+                </div>
+                <input type="range" id="fx-warmth" min="0" max="60" value="0"
+                  oninput="updateFxSetting('warmth', this.value)" class="w-full cursor-pointer" />
+              </div>
+            </div>
+
+            <!-- Studio Drop Shadow Controls -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i>
+                  <span class="text-xs font-bold text-slate-800 font-deltha uppercase tracking-wider">Drop Shadow</span>
+                </div>
+                <input type="checkbox" id="shadow-toggle" onchange="updateFxToggle('shadowEnabled', this.checked)"
+                  class="rounded text-purple-600 focus:ring-0 cursor-pointer w-4 h-4" />
+              </div>
+
+              <div id="shadow-controls-group" class="space-y-3 opacity-40 pointer-events-none transition-all duration-200 pt-1">
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Shadow Blur</span>
+                    <span id="fx-shadow-blur-val" class="text-purple-600 font-bold">20px</span>
+                  </div>
+                  <input type="range" id="fx-shadow-blur" min="0" max="60" value="20"
+                    oninput="updateFxSetting('shadowBlur', this.value)" class="w-full cursor-pointer" />
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Distance (Y-Offset)</span>
+                    <span id="fx-shadow-offset-val" class="text-purple-600 font-bold">15px</span>
+                  </div>
+                  <input type="range" id="fx-shadow-offset" min="0" max="50" value="15"
+                    oninput="updateFxSetting('shadowOffset', this.value)" class="w-full cursor-pointer" />
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Opacity</span>
+                    <span id="fx-shadow-opacity-val" class="text-purple-600 font-bold">35%</span>
+                  </div>
+                  <input type="range" id="fx-shadow-opacity" min="10" max="100" value="35"
+                    oninput="updateFxSetting('shadowOpacity', this.value)" class="w-full cursor-pointer" />
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-[11px] font-semibold text-slate-600">Shadow Color</span>
+                  <input type="color" id="fx-shadow-color" value="#000000"
+                    onchange="updateFxSetting('shadowColor', this.value)"
+                    class="w-7 h-7 rounded-full cursor-pointer border-0 bg-transparent" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Creator Sticker Outline (Thumbnail Border) -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="sparkle" class="w-4 h-4 text-purple-600"></i>
+                  <span class="text-xs font-bold text-slate-800 font-deltha uppercase tracking-wider">Sticker Outline</span>
+                </div>
+                <input type="checkbox" id="outline-toggle" onchange="updateFxToggle('outlineEnabled', this.checked)"
+                  class="rounded text-purple-600 focus:ring-0 cursor-pointer w-4 h-4" />
+              </div>
+
+              <div id="outline-controls-group" class="space-y-3 opacity-40 pointer-events-none transition-all duration-200 pt-1">
+                <div>
+                  <div class="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
+                    <span>Border Thickness</span>
+                    <span id="fx-outline-size-val" class="text-purple-600 font-bold">6px</span>
+                  </div>
+                  <input type="range" id="fx-outline-size" min="1" max="25" value="6"
+                    oninput="updateFxSetting('outlineSize', this.value)" class="w-full cursor-pointer" />
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                  <span class="text-[11px] font-semibold text-slate-600">Outline Color</span>
+                  <div class="flex items-center gap-2">
+                    <button type="button" onclick="setOutlinePresetColor('#ffffff')" class="w-5 h-5 rounded-full bg-white border border-slate-300 shadow-sm" title="White"></button>
+                    <button type="button" onclick="setOutlinePresetColor('#facc15')" class="w-5 h-5 rounded-full bg-yellow-400" title="Yellow"></button>
+                    <button type="button" onclick="setOutlinePresetColor('#a855f7')" class="w-5 h-5 rounded-full bg-purple-500" title="Purple"></button>
+                    <input type="color" id="fx-outline-color" value="#ffffff"
+                      onchange="updateFxSetting('outlineColor', this.value)"
+                      class="w-7 h-7 rounded-full cursor-pointer border-0 bg-transparent" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reset Button -->
+            <button onclick="resetAllEffects()"
+              class="w-full bg-slate-100 hover:bg-slate-200 border border-slate-300 py-2.5 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center gap-2 transition">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset All Effects
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white py-8 mt-12 relative z-20">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div>
+        <p class="font-medium text-slate-700">
+          <strong class="font-deltha tracking-wide text-slate-900">BG TOOLS</strong> &bull; Developed for <strong
+            class="text-purple-600">ZenitX Global</strong>
+        </p>
+        <p class="text-[11px] text-slate-400">AI Powered Digital and Social Media Agency</p>
+      </div>
+
+      <div class="flex items-center gap-4 font-semibold">
+        <a href="https://xfahadofficial.github.io" target="_blank" rel="noopener noreferrer"
+          class="text-purple-600 hover:text-purple-700 hover:underline flex items-center gap-1.5">
+          <span>xfahadofficial.github.io</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Remove.bg API Integration & Full Studio Pipeline -->
+  <script>
+    const REMOVE_BG_API_KEY = "GfPLj1Zy9TR7RCEZC5C15btR";
+
+    let originalImageElement = new Image();
+    let originalImageData = null;
+    let maskCanvas = document.createElement('canvas');
+    let maskCtx = maskCanvas.getContext('2d', { willReadFrequently: true });
+
+    // Buffer canvas for raw cutout before filters/shadows
+    let fgBufferCanvas = document.createElement('canvas');
+    let fgBufferCtx = fgBufferCanvas.getContext('2d', { willReadFrequently: true });
+
+    let mainCanvas = document.getElementById('main-canvas');
+    let mainCtx = mainCanvas.getContext('2d');
+
+    let currentTab = 'bg';
+    let brushMode = 'erase';
+    let brushSize = 30;
+    let isPainting = false;
+    let undoHistory = [];
+
+    let activeBackground = { type: 'transparent', val: '' };
+
+    // Effects State
+    let fxSettings = {
+      brightness: 100,
+      contrast: 100,
+      saturation: 100,
+      warmth: 0,
+      shadowEnabled: false,
+      shadowBlur: 20,
+      shadowOffset: 15,
+      shadowOpacity: 35,
+      shadowColor: '#000000',
+      outlineEnabled: false,
+      outlineSize: 6,
+      outlineColor: '#ffffff'
+    };
+
+    lucide.createIcons();
+
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const uploadScreen = document.getElementById('upload-screen');
+    const processingLoader = document.getElementById('processing-loader');
+    const editorWorkspace = document.getElementById('editor-workspace');
+    const underlayLayer = document.getElementById('underlay-layer');
+    const brushCursor = document.getElementById('brush-cursor');
+    const progressBar = document.getElementById('progress-bar');
+    const loaderTitle = document.getElementById('loader-title');
+    const loaderSub = document.getElementById('loader-sub');
+
+    // Drag-and-drop Events
+    ['dragenter', 'dragover'].forEach(n => dropZone.addEventListener(n, (e) => {
+      e.preventDefault();
+      dropZone.classList.add('border-purple-600', 'bg-purple-50/20');
+    }));
+    ['dragleave', 'drop'].forEach(n => dropZone.addEventListener(n, (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('border-purple-600', 'bg-purple-50/20');
+    }));
+
+    dropZone.addEventListener('drop', (e) => {
+      if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length) processFile(e.target.files[0]);
+    });
+
+    window.testWithUrl = async function (url) {
+      uploadScreen.classList.add('hidden');
+      processingLoader.classList.remove('hidden');
+      try {
+        const res = await fetch(url);
+        const blob = await res.blob();
+        const file = new File([blob], 'sample.jpg', { type: blob.type || 'image/jpeg' });
+        processFile(file);
+      } catch (err) {
+        alert("Failed to load sample image: " + err.message);
+        resetApp();
+      }
+    };
+
+    async function processFile(file) {
+      uploadScreen.classList.add('hidden');
+      processingLoader.classList.remove('hidden');
+      
+      loaderTitle.innerText = "Removing Background";
+      loaderSub.innerText = "Please wait, removing background...";
+      progressBar.style.width = '20%';
+
+      let progress = 20;
+      const progressTimer = setInterval(() => {
+        if (progress < 85) {
+          progress += 5;
+          progressBar.style.width = `${progress}%`;
+        }
+      }, 250);
+
+      try {
+        // 1. Load Original Image
+        const originalUrl = URL.createObjectURL(file);
+        await new Promise((resolve, reject) => {
+          originalImageElement.onload = resolve;
+          originalImageElement.onerror = reject;
+          originalImageElement.src = originalUrl;
+        });
+
+        // 2. Call Remove.bg API
+        const formData = new FormData();
+        formData.append('image_file', file);
+        formData.append('size', 'auto');
+
+        const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+          method: 'POST',
+          headers: {
+            'X-Api-Key': REMOVE_BG_API_KEY
+          },
+          body: formData
+        });
+
+        if (!response.ok) {
+          let errorMsg = `API error (${response.status})`;
+          try {
+            const errJson = await response.json();
+            if (errJson.errors && errJson.errors[0]) {
+              errorMsg = errJson.errors[0].title;
+            }
+          } catch (e) {}
+          throw new Error(errorMsg);
+        }
+
+        clearInterval(progressTimer);
+        progressBar.style.width = '95%';
+
+        // 3. Load Cutout Image
+        const resultBlob = await response.blob();
+        const resultUrl = URL.createObjectURL(resultBlob);
+        const cutoutImg = new Image();
+        await new Promise((resolve, reject) => {
+          cutoutImg.onload = resolve;
+          cutoutImg.onerror = reject;
+          cutoutImg.src = resultUrl;
+        });
+
+        const width = cutoutImg.naturalWidth || cutoutImg.width;
+        const height = cutoutImg.naturalHeight || cutoutImg.height;
+
+        // 4. Setup Stage Canvas, Buffer & Mask Canvas
+        mainCanvas.width = width;
+        mainCanvas.height = height;
+        fgBufferCanvas.width = width;
+        fgBufferCanvas.height = height;
+        maskCanvas.width = width;
+        maskCanvas.height = height;
+
+        // Draw original raw photo (scaled if needed)
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = width;
+        tempCanvas.height = height;
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.drawImage(originalImageElement, 0, 0, width, height);
+        originalImageData = tempCtx.getImageData(0, 0, width, height);
+
+        // Extract alpha channel mask from the cutout
+        tempCtx.clearRect(0, 0, width, height);
+        tempCtx.drawImage(cutoutImg, 0, 0, width, height);
+        const cutoutData = tempCtx.getImageData(0, 0, width, height).data;
+
+        const maskImgData = maskCtx.createImageData(width, height);
+        for (let i = 0; i < cutoutData.length; i += 4) {
+          maskImgData.data[i] = 255;
+          maskImgData.data[i + 1] = 255;
+          maskImgData.data[i + 2] = 255;
+          maskImgData.data[i + 3] = cutoutData[i + 3];
+        }
+        maskCtx.putImageData(maskImgData, 0, 0);
+
+        saveUndoState();
+        progressBar.style.width = '100%';
+
+        setTimeout(() => {
+          processingLoader.classList.add('hidden');
+          editorWorkspace.classList.remove('hidden');
+          renderComposedView();
+        }, 200);
+
+      } catch (err) {
+        clearInterval(progressTimer);
+        console.error("Remove.bg Error:", err);
+        alert("Could not remove background: " + err.message);
+        resetApp();
+      }
+    }
+
+    // Helper: Hex to RGBA
+    function hexToRgba(hex, alpha) {
+      let c = hex.replace('#', '');
+      if (c.length === 3) c = c.split('').map(x => x + x).join('');
+      const num = parseInt(c, 16);
+      return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
+    }
+
+    // Render Foreground with Active Effects, Masks and Shadows
+    function renderComposedView() {
+      const w = mainCanvas.width;
+      const h = mainCanvas.height;
+
+      // 1. Compose the raw foreground cutout onto fgBufferCanvas
+      fgBufferCtx.clearRect(0, 0, w, h);
+      const output = fgBufferCtx.createImageData(w, h);
+      const outData = output.data;
+      const origData = originalImageData.data;
+      const maskData = maskCtx.getImageData(0, 0, w, h).data;
+
+      for (let i = 0; i < origData.length; i += 4) {
+        outData[i] = origData[i];         // R
+        outData[i + 1] = origData[i + 1]; // G
+        outData[i + 2] = origData[i + 2]; // B
+        outData[i + 3] = Math.round((origData[i + 3] * maskData[i + 3]) / 255);
+      }
+      fgBufferCtx.putImageData(output, 0, 0);
+
+      // 2. Render onto mainCanvas
+      mainCtx.clearRect(0, 0, w, h);
+
+      // A. Draw Floor Drop Shadow if enabled
+      if (fxSettings.shadowEnabled) {
+        mainCtx.save();
+        mainCtx.shadowColor = hexToRgba(fxSettings.shadowColor, fxSettings.shadowOpacity / 100);
+        mainCtx.shadowBlur = fxSettings.shadowBlur;
+        mainCtx.shadowOffsetX = 0;
+        mainCtx.shadowOffsetY = fxSettings.shadowOffset;
+        mainCtx.drawImage(fgBufferCanvas, 0, 0);
+        mainCtx.restore();
+      }
+
+      // B. Draw Creator Sticker Outline if enabled
+      if (fxSettings.outlineEnabled && fxSettings.outlineSize > 0) {
+        drawStickerOutline(mainCtx, fgBufferCanvas, w, h, fxSettings.outlineSize, fxSettings.outlineColor);
+      }
+
+      // C. Draw Subject with Lighting & Color Filter Adjustments
+      mainCtx.save();
+      const filterStr = `brightness(${fxSettings.brightness}%) contrast(${fxSettings.contrast}%) saturate(${fxSettings.saturation}%) sepia(${fxSettings.warmth}%)`;
+      mainCtx.filter = filterStr;
+      mainCtx.drawImage(fgBufferCanvas, 0, 0);
+      mainCtx.filter = 'none';
+      mainCtx.restore();
+    }
+
+    // High performance smooth outline generator
+    function drawStickerOutline(ctx, srcCanvas, w, h, size, color) {
+      const off = document.createElement('canvas');
+      off.width = w;
+      off.height = h;
+      const oCtx = off.getContext('2d');
+      oCtx.drawImage(srcCanvas, 0, 0);
+      oCtx.globalCompositeOperation = 'source-in';
+      oCtx.fillStyle = color;
+      oCtx.fillRect(0, 0, w, h);
+
+      ctx.save();
+      const radius = size;
+      const steps = Math.min(32, Math.max(16, radius * 2));
+      for (let i = 0; i < steps; i++) {
+        const angle = (i * 2 * Math.PI) / steps;
+        ctx.drawImage(off, Math.cos(angle) * radius, Math.sin(angle) * radius);
+      }
+      if (radius > 4) {
+        for (let i = 0; i < steps; i++) {
+          const angle = (i * 2 * Math.PI) / steps;
+          ctx.drawImage(off, Math.cos(angle) * (radius / 2), Math.sin(angle) * (radius / 2));
+        }
+      }
+      ctx.restore();
+    }
+
+    // Effects Controllers
+    window.updateFxSetting = function(prop, val) {
+      fxSettings[prop] = (prop === 'shadowColor' || prop === 'outlineColor') ? val : Number(val);
+      const textVal = document.getElementById(`fx-${prop.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}-val`);
+      if (textVal) {
+        textVal.innerText = (prop === 'shadowBlur' || prop === 'shadowOffset' || prop === 'outlineSize') ? `${val}px` : `${val}%`;
+      }
+      renderComposedView();
+    };
+
+    window.updateFxToggle = function(prop, enabled) {
+      fxSettings[prop] = enabled;
+      if (prop === 'shadowEnabled') {
+        const group = document.getElementById('shadow-controls-group');
+        group.classList.toggle('opacity-40', !enabled);
+        group.classList.toggle('pointer-events-none', !enabled);
+      } else if (prop === 'outlineEnabled') {
+        const group = document.getElementById('outline-controls-group');
+        group.classList.toggle('opacity-40', !enabled);
+        group.classList.toggle('pointer-events-none', !enabled);
+      }
+      renderComposedView();
+    };
+
+    window.setOutlinePresetColor = function(color) {
+      document.getElementById('fx-outline-color').value = color;
+      updateFxSetting('outlineColor', color);
+    };
+
+    window.applyFxPreset = function(preset) {
+      if (preset === 'normal') {
+        setFxSliders(100, 100, 100, 0);
+      } else if (preset === 'studio') {
+        setFxSliders(106, 110, 105, 0);
+      } else if (preset === 'vibrant') {
+        setFxSliders(103, 115, 135, 0);
+      } else if (preset === 'warm') {
+        setFxSliders(104, 105, 115, 25);
+      } else if (preset === 'bw') {
+        setFxSliders(100, 125, 0, 0);
+      }
+    };
+
+    function setFxSliders(b, c, s, w) {
+      fxSettings.brightness = b;
+      fxSettings.contrast = c;
+      fxSettings.saturation = s;
+      fxSettings.warmth = w;
+
+      document.getElementById('fx-bright').value = b;
+      document.getElementById('fx-bright-val').innerText = `${b}%`;
+      document.getElementById('fx-contrast').value = c;
+      document.getElementById('fx-contrast-val').innerText = `${c}%`;
+      document.getElementById('fx-sat').value = s;
+      document.getElementById('fx-sat-val').innerText = `${s}%`;
+      document.getElementById('fx-warmth').value = w;
+      document.getElementById('fx-warmth-val').innerText = `${w}%`;
+
+      renderComposedView();
+    }
+
+    window.resetAllEffects = function() {
+      setFxSliders(100, 100, 100, 0);
+      
+      fxSettings.shadowEnabled = false;
+      document.getElementById('shadow-toggle').checked = false;
+      document.getElementById('shadow-controls-group').classList.add('opacity-40', 'pointer-events-none');
+
+      fxSettings.outlineEnabled = false;
+      document.getElementById('outline-toggle').checked = false;
+      document.getElementById('outline-controls-group').classList.add('opacity-40', 'pointer-events-none');
+
+      renderComposedView();
+    };
+
+    // Brush Retouch Handlers
+    mainCanvas.addEventListener('mousedown', (e) => {
+      if (currentTab !== 'brush') return;
+      isPainting = true;
+      paintRetouch(e);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = mainCanvas.getBoundingClientRect();
+      if (
+        e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom &&
+        currentTab === 'brush'
+      ) {
+        brushCursor.classList.remove('hidden');
+        brushCursor.style.width = `${brushSize}px`;
+        brushCursor.style.height = `${brushSize}px`;
+        brushCursor.style.left = `${e.clientX}px`;
+        brushCursor.style.top = `${e.clientY}px`;
+      } else {
+        brushCursor.classList.add('hidden');
+      }
+
+      if (!isPainting || currentTab !== 'brush') return;
+      paintRetouch(e);
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isPainting) {
+        isPainting = false;
+        saveUndoState();
+      }
+    });
+
+    function paintRetouch(e) {
+      const rect = mainCanvas.getBoundingClientRect();
+      const scaleX = mainCanvas.width / rect.width;
+      const scaleY = mainCanvas.height / rect.height;
+
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      maskCtx.save();
+      maskCtx.beginPath();
+      maskCtx.arc(x, y, brushSize / 2, 0, Math.PI * 2);
+
+      if (brushMode === 'erase') {
+        maskCtx.globalCompositeOperation = 'destination-out';
+        maskCtx.fillStyle = 'rgba(0, 0, 0, 1)';
+      } else {
+        maskCtx.globalCompositeOperation = 'source-over';
+        maskCtx.fillStyle = 'rgba(255, 255, 255, 1)';
+      }
+
+      maskCtx.fill();
+      maskCtx.restore();
+      renderComposedView();
+    }
+
+    function saveUndoState() {
+      if (undoHistory.length > 10) undoHistory.shift();
+      undoHistory.push(maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height));
+    }
+
+    window.restoreInitialCutout = function () {
+      if (undoHistory.length > 0) {
+        maskCtx.putImageData(undoHistory[0], 0, 0);
+        renderComposedView();
+      }
+    };
+
+    window.setBrushMode = function (mode) {
+      brushMode = mode;
+      const btnErase = document.getElementById('btn-tool-erase');
+      const btnRestore = document.getElementById('btn-tool-restore');
+
+      if (mode === 'erase') {
+        btnErase.className = "bg-purple-50 text-purple-700 border border-purple-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+        btnRestore.className = "bg-slate-50 text-slate-600 border border-slate-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+      } else {
+        btnRestore.className = "bg-purple-50 text-purple-700 border border-purple-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+        btnErase.className = "bg-slate-50 text-slate-600 border border-slate-200 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2";
+      }
+    };
+
+    window.updateBrushSize = function (val) {
+      brushSize = val;
+      document.getElementById('brush-size-text').innerText = `${val}px`;
+    };
+
+    window.setTab = function (tab) {
+      currentTab = tab;
+      ['bg', 'brush', 'fx'].forEach(t => {
+        document.getElementById(`tab-panel-${t}`).classList.toggle('hidden', t !== tab);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tab) {
+          btn.className = "flex-1 py-2 text-xs font-bold rounded-xl bg-purple-50 text-purple-700 transition flex items-center justify-center gap-1.5 shadow-sm";
+        } else {
+          btn.className = "flex-1 py-2 text-xs font-bold rounded-xl text-slate-500 hover:text-slate-900 transition flex items-center justify-center gap-1.5";
+        }
+      });
+      mainCanvas.style.cursor = tab === 'brush' ? 'crosshair' : 'default';
+    };
+
+    window.setCustomBg = function (color) {
+      underlayLayer.style.backgroundImage = 'none';
+      underlayLayer.style.filter = 'none';
+      if (color === 'transparent') {
+        underlayLayer.style.backgroundColor = 'transparent';
+        activeBackground = { type: 'transparent', val: '' };
+      } else {
+        underlayLayer.style.backgroundColor = color;
+        activeBackground = { type: 'color', val: color };
+      }
+    };
+
+    window.setBgImage = function (url) {
+      underlayLayer.style.backgroundColor = 'transparent';
+      underlayLayer.style.backgroundImage = `url('${url}')`;
+      underlayLayer.style.backgroundSize = 'cover';
+      underlayLayer.style.backgroundPosition = 'center';
+      underlayLayer.style.filter = 'none';
+      activeBackground = { type: 'image', val: url };
+    };
+
+    window.applyBlur = function (px) {
+      if (px === 0) {
+        setCustomBg('transparent');
+        return;
+      }
+      underlayLayer.style.backgroundColor = 'transparent';
+      underlayLayer.style.backgroundImage = `url('${originalImageElement.src}')`;
+      underlayLayer.style.backgroundSize = 'cover';
+      underlayLayer.style.backgroundPosition = 'center';
+      underlayLayer.style.filter = `blur(${px}px)`;
+      activeBackground = { type: 'blur', val: px, src: originalImageElement.src };
+    };
+
+    window.handleUserCustomBg = function (e) {
+      const file = e.target.files[0];
+      if (file) setBgImage(URL.createObjectURL(file));
+    };
+
+    window.setViewMode = function (mode) {
+      const btnCutout = document.getElementById('btn-view-cutout');
+      const btnOriginal = document.getElementById('btn-view-original');
+      if (mode === 'original') {
+        mainCtx.putImageData(originalImageData, 0, 0);
+        btnOriginal.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg bg-white text-purple-700 shadow-sm transition";
+        btnCutout.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition";
+      } else {
+        renderComposedView();
+        btnCutout.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg bg-white text-purple-700 shadow-sm transition";
+        btnOriginal.className = "px-3.5 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition";
+      }
+    };
+
+    window.exportFinalImage = function () {
+      const expCanvas = document.createElement('canvas');
+      const expCtx = expCanvas.getContext('2d');
+      expCanvas.width = mainCanvas.width;
+      expCanvas.height = mainCanvas.height;
+
+      if (activeBackground.type === 'color') {
+        expCtx.fillStyle = activeBackground.val;
+        expCtx.fillRect(0, 0, expCanvas.width, expCanvas.height);
+        finalize();
+      } else if (activeBackground.type === 'image' || activeBackground.type === 'blur') {
+        const bg = new Image();
+        bg.crossOrigin = 'anonymous';
+        bg.onload = () => {
+          if (activeBackground.type === 'blur') {
+            expCtx.filter = `blur(${activeBackground.val}px)`;
+          }
+          expCtx.drawImage(bg, 0, 0, expCanvas.width, expCanvas.height);
+          expCtx.filter = 'none';
+          finalize();
+        };
+        bg.src = activeBackground.type === 'blur' ? activeBackground.src : activeBackground.val;
+      } else {
+        finalize();
+      }
+
+      function finalize() {
+        // Draw composed stage with effects, outline & shadow intact
+        expCtx.drawImage(mainCanvas, 0, 0);
+
+        const a = document.createElement('a');
+        a.download = 'cutout-bgtools.png';
+        a.href = expCanvas.toDataURL('image/png');
+        a.click();
+      }
+    };
+
+    window.resetApp = function () {
+      editorWorkspace.classList.add('hidden');
+      processingLoader.classList.add('hidden');
+      uploadScreen.classList.remove('hidden');
+      fileInput.value = '';
+      undoHistory = [];
+    };
+  </script>
+</body>
+</html>
